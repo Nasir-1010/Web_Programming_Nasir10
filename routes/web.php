@@ -1,19 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\ProfileController;
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->middleware('auth');
+Route::get('/create', [MahasiswaController::class, 'create']);
+Route::post('/store', [MahasiswaController::class, 'store']);
+Route::get('/edit/{mahasiswa}', [MahasiswaController::class, 'edit']);
+Route::put('/update/{mahasiswa}', [MahasiswaController::class, 'update']);
+Route::delete('/delete/{mahasiswa}', [MahasiswaController::class, 'delete']);
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
