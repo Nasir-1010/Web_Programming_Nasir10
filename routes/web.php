@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->middleware('auth');
 Route::get('/create', [MahasiswaController::class, 'create']);
@@ -13,3 +14,7 @@ Route::put('/update/{mahasiswa}', [MahasiswaController::class, 'update']);
 Route::delete('/delete/{mahasiswa}', [MahasiswaController::class, 'delete']);
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 Route::get('/', [HomeController::class, 'index'])->middleware('auth');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
+
+Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
